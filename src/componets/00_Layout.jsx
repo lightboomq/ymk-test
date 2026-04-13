@@ -39,7 +39,18 @@ import s from '../styles/00_layout.module.css';
 
 export const Layout = observer(() => {
     const [menuOpen, setMenuOpen] = useState(false);
+    React.useEffect(() => {
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
 
+        // Чистим эффект при размонтировании компонента
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [menuOpen]);
     const toggleMenu = () => setMenuOpen(!menuOpen);
     const closeMenu = () => setMenuOpen(false);
 
