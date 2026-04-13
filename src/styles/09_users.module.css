@@ -40,7 +40,7 @@
 
 .user {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 12px;
     border-radius: 10px;
