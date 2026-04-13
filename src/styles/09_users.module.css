@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.user_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.count_badge {
+    background-color: #f1f5f9; /* Светло-серый */
+    color: #64748b; /* Спокойный серый текст */
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.search_user {
+    outline: none;
+    max-width: 150px;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+.search_user:focus {
+    border-color: #3b82f6; /* Цвет границы становится ярче */
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); /* Мягкое облако вокруг */
+}
+.search_user::placeholder {
+}
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+.user:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: #cbd5e1;
+}
+.job_title {
+    text-align: center;
+}
+.deadline_siz {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+    width: 45px;
+    height: 25px;
+    border-radius: 15px;
+    background-color: #22c55e;
+    color: #ffffff;
+}
