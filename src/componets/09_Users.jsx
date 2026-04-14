@@ -1,38 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import s from '../styles/09_users.module.css';
 
 export const Users = () => {
+    const navigate = useNavigate();
+
+    const users = [
+        { id: 156937, name: 'Иван Иванов', pos: 'Резчик х/м', days: 0, level: 'danger' },
+        { id: 156936, name: 'Ваня Петров', pos: 'Вальцовщик', days: 10, level: 'warning' },
+        { id: 156935, name: 'Вася Пупкин', pos: 'Резчик х/м', days: 365, level: 'good' },
+    ];
+
     return (
         <div className={s.container}>
             <div className={s.user_nav}>
-                <input className={s.search_user} type='search' placeholder='Поиск...' />
-                <h2>
-                    Сотрудники <span className={s.count_badge}>3</span>
-                </h2>
+                <h2 className={s.title}>Сотрудники</h2>
+                <span className={s.count_badge}>{users.length}</span>
             </div>
 
-            <ul className={s.list}>
-                <li className={s.user} style={{ backgroundColor: '#fef2f2', borderColor: ' #fca5a5', border: '1px solid #ef4444' }}>
-                    <span className={s.name}>Иван Иванов</span>
-                    {/* <span className={s.job_title}>Резчик х/м</span> */}
-                    <span className={s.deadline_siz} style={{ backgroundColor: '#ef4444', boxShadow: '0 0 8px rgba(239, 68, 68, 0.4)' }}>
-                        0
-                    </span>
-                </li>
-                <li className={s.user} style={{ backgroundColor: '#fffbeb', borderColor: ' #fca5a5', border: '1px solid #fcd34d' }}>
-                    <span className={s.name}>Тест Тест</span>
-                    {/* <span className={s.job_title}>Резчик х/м</span> */}
-                    <span className={s.deadline_siz} style={{ backgroundColor: '#f59e0b', color: '#ffffff', boxShadow: '0 0 8px rgba(245, 158, 11, 0.4)' }}>
-                        10
-                    </span>
-                </li>
-                <li className={s.user}>
-                    <span className={s.name}>Тест Т</span>
-                    {/* <span className={s.job_title}>Вальцовщик</span> */}
-                    <span className={s.deadline_siz}>365</span>
-                </li>
-            </ul>
+            <div className={s.table_container}>
+                <table className={s.table}>
+                    <thead>
+                        <tr>
+                            <th>Л/Н</th>
+                            <th>ФИО</th>
+                            <th>Должность</th>
+                            <th>Статус СИЗ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.map((user) => (
+                            <tr key={user.id} className={s.row} onClick={() => navigate(`/users/${user.id}`)}>
+                                <td>{user.id}</td>
+                                <td className={s.bold}>{user.name}</td>
+                                <td>{user.pos}</td>
+                                <td>
+                                    <span className={`${s.badge} ${s[user.level]}`}>{user.days} дн.</span>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

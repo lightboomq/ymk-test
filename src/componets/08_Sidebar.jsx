@@ -10,7 +10,7 @@ export const Sidebar = ({ closeMenu }) => {
             <ul className={s.menu}>
                 <li onClick={closeMenu}>
                     <NavLink to='/' end className={getLinkClass}>
-                        Сотрудники
+                        Сотрудники(3)
                     </NavLink>
                 </li>
                 <li onClick={closeMenu}>
@@ -20,7 +20,7 @@ export const Sidebar = ({ closeMenu }) => {
                 </li>
                 <li onClick={closeMenu}>
                     <NavLink to='/siz_catalog' className={getLinkClass}>
-                        Каталог СИЗ
+                        Каталог СИЗ(15)
                     </NavLink>
                 </li>
                 <li onClick={closeMenu}>
@@ -31,7 +31,7 @@ export const Sidebar = ({ closeMenu }) => {
 
                 <li onClick={closeMenu}>
                     <NavLink to='/user_archive' className={getLinkClass}>
-                        Архив сотрудников
+                        Архив сотрудников(10)
                     </NavLink>
                 </li>
             </ul>

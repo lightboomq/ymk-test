@@ -1,0 +1,129 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.top_bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+}
+.badge {
+    font-size: 12px;
+    background: #e2e8f0;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #475569;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.item_card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color 0.2s;
+}
+
+.item_card:hover {
+    border-color: #cbd5e1;
+}
+
+.img_box {
+    width: 100%;
+    height: 140px; /* Твоя фиксированная высота */
+    background: #f8fafc;
+    position: relative;
+    display: flex; /* Центрируем картинку */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Обрезаем всё, что вылезет (на всякий случай) */
+    padding: 10px; /* Добавь небольшой отступ, чтобы картинка не касалась краев */
+}
+
+.img_box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Убирает белый фон у картинки, если фон под ней темнее */
+    mix-blend-mode: multiply;
+}
+
+.del_icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ef4444;
+    cursor: pointer;
+}
+
+.del_icon:hover {
+    background: #fee2e2;
+}
+
+.main_info {
+    padding: 12px;
+}
+
+.name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+.info_text {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+    height: 34px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.spec_table {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 8px;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.spec_item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+}
+
+.label {
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.val {
+    color: #334155;
+    font-weight: 600;
+}
