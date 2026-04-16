@@ -1,8 +1,10 @@
+import Users_store from '../store/01_Users_store';
+import Siz_store from '../store/02_Siz_store';
+import { observer } from 'mobx-react-lite';
 import { NavLink } from 'react-router-dom';
 import s from '../styles/08_sidebar.module.css';
 
-export const Sidebar = ({ closeMenu }) => {
-    // Эта функция решает, какой класс применить
+export const Sidebar = observer(({ closeMenu }) => {
     const getLinkClass = ({ isActive }) => (isActive ? `${s.menu_link} ${s.active_link}` : s.menu_link);
 
     return (
@@ -10,7 +12,7 @@ export const Sidebar = ({ closeMenu }) => {
             <ul className={s.menu}>
                 <li onClick={closeMenu}>
                     <NavLink to='/' end className={getLinkClass}>
-                        Сотрудники(3)
+                        Сотрудники({Users_store.get_all_data().length})
                     </NavLink>
                 </li>
                 <li onClick={closeMenu}>
@@ -20,7 +22,7 @@ export const Sidebar = ({ closeMenu }) => {
                 </li>
                 <li onClick={closeMenu}>
                     <NavLink to='/siz_catalog' className={getLinkClass}>
-                        Каталог СИЗ(15)
+                        Каталог СИЗ({Siz_store.get_all_data().length})
                     </NavLink>
                 </li>
                 <li onClick={closeMenu}>
@@ -34,7 +36,12 @@ export const Sidebar = ({ closeMenu }) => {
                         Архив сотрудников(10)
                     </NavLink>
                 </li>
+                <li onClick={closeMenu}>
+                    <NavLink to='/notification' className={getLinkClass}>
+                        Уведомления
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );
-};
+});

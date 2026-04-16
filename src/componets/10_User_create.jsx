@@ -1,4 +1,5 @@
 import React from 'react';
+import Users_store from '../store/01_Users_store';
 import s from '../styles/10_user_create.module.css';
 
 export const User_create = () => {
@@ -8,6 +9,7 @@ export const User_create = () => {
         last_name: '',
         job_title: '',
         password: '',
+        is_fired: false,
     });
 
     const [errors, set_errors] = React.useState({});
@@ -40,7 +42,7 @@ export const User_create = () => {
 
     const handle_submit = (e) => {
         e.preventDefault();
-
+        Users_store.add(form_data);
         console.log('данные_для_отправки:', form_data);
     };
 
@@ -57,7 +59,7 @@ export const User_create = () => {
                         name='personal_number'
                         value={form_data.personal_number}
                         onChange={handle_change}
-                        placeholder='Например: 354'
+                        placeholder=''
                         required
                     />
                     {errors.personal_number && <span className={s.error_text}>{errors.personal_number}</span>}
@@ -71,7 +73,7 @@ export const User_create = () => {
                         name='first_name'
                         value={form_data.first_name}
                         onChange={handle_change}
-                        placeholder='Например: Иван'
+                        placeholder=''
                         required
                     />
                     {errors.first_name && <span className={s.error_text}>{errors.first_name}</span>}
@@ -85,7 +87,7 @@ export const User_create = () => {
                         name='last_name'
                         value={form_data.last_name}
                         onChange={handle_change}
-                        placeholder='Например: Иванов'
+                        placeholder=''
                         required
                     />
                     {errors.last_name && <span className={s.error_text}>{errors.last_name}</span>}

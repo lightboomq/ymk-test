@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
+import Siz_store from '../store/02_Siz_store';
 import { Upload, Plus, Trash2, X } from 'lucide-react';
 import s from '../styles/12_siz_create.module.css';
 
-export const Siz_create = () => {
+export const Siz_create = observer(() => {
     // Вспомогательная функция для дат в формате ГГГГ-ММ-ДД
     const get_formatted_date = (date_obj) => date_obj.toISOString().split('T')[0];
 
@@ -12,28 +14,29 @@ export const Siz_create = () => {
         const next_year = new Date();
         next_year.setFullYear(today.getFullYear() + 1);
         return {
-            issue_date: get_formatted_date(today),
-            expiry_date: get_formatted_date(next_year),
+            start_date: get_formatted_date(today),
+            end_date: get_formatted_date(next_year),
         };
     };
 
     const initial_dates = init_dates();
 
     const [form_data, set_form_data] = useState({
-        siz_category: '',
-        siz_description: '',
-        siz_image: null,
-        issue_date: initial_dates.issue_date,
-        expiry_date: initial_dates.expiry_date,
+        id: Date.now(),
+        category: '',
+        description: '',
+        img: null,
+        start_date: initial_dates.start_date,
+        end_date: initial_dates.end_date,
     });
 
-    const [dynamic_params, set_dynamic_params] = useState([{ id: 1, label: 'Размер', value: '' }]);
+    const [dynamic_params, set_dynamic_params] = useState([{ id: 1, label: '', value: '' }]);
 
     const [errors, set_errors] = useState({});
     const [preview_url, set_preview_url] = useState(null);
     const [is_dragging, set_is_dragging] = useState(false);
     const file_input_ref = useRef(null);
-    const placeholder = [{ property: '' }];
+
     // Проверка дат
     const validate_dates = (issue, expiry) => {
         if (new Date(issue) > new Date(expiry)) {
@@ -53,15 +56,15 @@ export const Siz_create = () => {
     const handle_file = (files) => {
         const file = files[0];
         if (file && file.type.startsWith('image/')) {
-            set_form_data((prev) => ({ ...prev, siz_image: file }));
+            set_form_data((prev) => ({ ...prev, img: file }));
             set_preview_url(URL.createObjectURL(file));
-            set_errors((prev) => ({ ...prev, siz_image: '' }));
+            set_errors((prev) => ({ ...prev, img: '' }));
         }
     };
 
     const remove_image = (e) => {
         e.stopPropagation();
-        set_form_data((prev) => ({ ...prev, siz_image: null }));
+        set_form_data((prev) => ({ ...prev, img: null }));
         set_preview_url(null);
         if (file_input_ref.current) file_input_ref.current.value = '';
     };
@@ -74,11 +77,10 @@ export const Siz_create = () => {
         e.preventDefault();
         let current_errors = {};
 
-        // Валидация
-        if (!form_data.siz_image) current_errors.siz_image = 'Загрузите фотографию';
-        if (!form_data.siz_description.trim()) current_errors.siz_description = 'Заполните описание';
+        // if (!form_data.img) current_errors.img = 'Загрузите фотографию';
+        if (!form_data.description.trim()) current_errors.description = 'Заполните описание';
 
-        const date_err = validate_dates(form_data.issue_date, form_data.expiry_date);
+        const date_err = validate_dates(form_data.start_date, form_data.end_date);
         if (date_err) current_errors.dates = date_err;
 
         if (Object.keys(current_errors).length > 0) {
@@ -87,6 +89,7 @@ export const Siz_create = () => {
         }
 
         const final_data = { ...form_data, attributes: dynamic_params };
+        Siz_store.add(final_data);
         console.log('отправка_данных_сиз:', final_data);
     };
 
@@ -98,17 +101,11 @@ export const Siz_create = () => {
                 <div className={s.row}>
                     <div className={s.field_group}>
                         <label className={s.label}>Дата выдачи</label>
-                        <input type='date' name='issue_date' className={s.input} value={form_data.issue_date} onChange={handle_change} />
+                        <input type='date' name='start_date' className={s.input} value={form_data.start_date} onChange={handle_change} />
                     </div>
                     <div className={s.field_group}>
                         <label className={s.label}>Срок износа</label>
-                        <input
-                            type='date'
-                            name='expiry_date'
-                            className={`${s.input} ${errors.dates ? s.input_error : ''}`}
-                            value={form_data.expiry_date}
-                            onChange={handle_change}
-                        />
+                        <input type='date' name='end_date' className={`${s.input} ${errors.dates ? s.input_error : ''}`} value={form_data.end_date} onChange={handle_change} />
                     </div>
                 </div>
                 {errors.dates && <span className={s.error_text}>{errors.dates}</span>}
@@ -118,8 +115,8 @@ export const Siz_create = () => {
                     <input
                         type='text'
                         className={s.input}
-                        value={form_data.siz_category}
-                        onChange={(e) => set_form_data({ ...form_data, siz_category: e.target.value })}
+                        value={form_data.category}
+                        onChange={(e) => set_form_data({ ...form_data, category: e.target.value })}
                         placeholder='Например: Ботинки'
                         required
                     />
@@ -128,7 +125,7 @@ export const Siz_create = () => {
                 <div className={s.field_group}>
                     <label className={s.label}>Фотография</label>
                     <div
-                        className={`${s.drop_zone} ${errors.siz_image ? s.input_error : ''} ${is_dragging ? s.drag_active : ''}`}
+                        className={`${s.drop_zone} ${errors.img ? s.input_error : ''} ${is_dragging ? s.drag_active : ''}`}
                         onDragOver={(e) => {
                             e.preventDefault();
                             set_is_dragging(true);
@@ -158,25 +155,25 @@ export const Siz_create = () => {
                         )}
                         <input type='file' ref={file_input_ref} onChange={(e) => handle_file(e.target.files)} hidden accept='image/*' />
                     </div>
-                    {errors.siz_image && <span className={s.error_text}>{errors.siz_image}</span>}
+                    {errors.img && <span className={s.error_text}>{errors.img}</span>}
                 </div>
 
                 <div className={s.field_group}>
                     <label className={s.label}>Описание</label>
                     <textarea
-                        className={`${s.textarea} ${errors.siz_description ? s.input_error : ''}`}
-                        value={form_data.siz_description}
-                        onChange={(e) => set_form_data({ ...form_data, siz_description: e.target.value })}
+                        className={`${s.textarea} ${errors.description ? s.input_error : ''}`}
+                        value={form_data.description}
+                        onChange={(e) => set_form_data({ ...form_data, description: e.target.value })}
                         placeholder='Краткое описание...'
                     />
-                    {errors.siz_description && <span className={s.error_text}>{errors.siz_description}</span>}
+                    {errors.description && <span className={s.error_text}>{errors.description}</span>}
                 </div>
 
                 <div className={s.params_section}>
                     <div className={s.params_header}>
                         <div className={s.label_group}>
                             <span className={s.label}>Характеристики</span>
-                            <p className={s.hint}>Более 1 размера в поле Значение перечисляйте через запятую</p>
+                            <p className={s.hint}>Более 1 параметра в поле Значение перечисляйте через запятую</p>
                         </div>
                         <button type='button' className={s.add_btn} onClick={() => set_dynamic_params([...dynamic_params, { id: Date.now(), label: '', value: '' }])}>
                             <Plus size={16} /> Добавить
@@ -204,4 +201,4 @@ export const Siz_create = () => {
             </form>
         </div>
     );
-};
+});

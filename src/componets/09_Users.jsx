@@ -15,7 +15,6 @@ export const Users = () => {
         <div className={s.container}>
             <div className={s.user_nav}>
                 <h2 className={s.title}>Сотрудники</h2>
-                <span className={s.count_badge}>{users.length}</span>
             </div>
 
             <div className={s.table_container}>

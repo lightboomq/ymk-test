@@ -7,6 +7,7 @@ import { Siz_catalog } from './componets/11_Siz_catalog';
 import { Siz_create } from './componets/12_Siz_create';
 import { User_archive } from './componets/13_User_archive';
 import { User_card } from './componets/14_User_card';
+import { Notification } from './componets/15_Notification';
 
 export const App = () => {
     return (
@@ -21,6 +22,7 @@ export const App = () => {
                     <Route path='siz_catalog' element={<Siz_catalog />} />
                     <Route path='siz_create' element={<Siz_create />} />
                     <Route path='user_archive' element={<User_archive />} />
+                    <Route path='notification' element={<Notification />} />
                 </Route>
             </Routes>
         </BrowserRouter>

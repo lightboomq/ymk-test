@@ -1,120 +1,109 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Plus, History, Archive, Package, X, Check, Clock } from 'lucide-react';
+import React from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import Users_store from '../store/01_Users_store';
+import { ArrowLeft, Package, Plus, History } from 'lucide-react';
+import bot from '../assets/боты.jpg';
 import s from '../styles/14_user_card.module.css';
 
-export const User_card = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
-
-    const [is_modal_open, set_is_modal_open] = useState(false);
-    const [is_archived, set_is_archived] = useState(false); // Статус архива
-
-    // Текущие СИЗ
-    const [current_siz, set_current_siz] = useState([{ id: 1, name: 'Ботинки рабочие S3', date: '15.02.2024', expiry: '15.02.2025' }]);
-
-    // История СИЗ (Статичные данные)
-    const [history_siz] = useState([
-        { id: 101, name: 'Перчатки х/б', date: '01.01.2024', end_date: '01.02.2024', status: 'Списано' },
-        { id: 102, name: 'Каска защитная', date: '10.10.2022', end_date: '10.10.2023', status: 'Износ' },
-        { id: 103, name: 'Очки защитные', date: '05.05.2023', end_date: '01.12.2023', status: 'Утеря' },
+export const User_card = observer(() => {
+    const [siz_catalog, set_siz_catalog] = React.useState([
+        {
+            id: 1,
+            img: bot,
+            title: 'Ботинки рабочие',
+            description: 'Защитный подносок, антипрокольная стелька, МБС подошва.',
+            attribute: [
+                {
+                    name: 'Размер',
+                    value: '44,47,45',
+                },
+                {
+                    name: 'Рост',
+                    value: '174-189,190-210,45',
+                },
+                {
+                    name: 'Размах рук',
+                    value: '25',
+                },
+            ],
+            replacement: false,
+            status: '',
+            start_date: '12.12.26',
+            end_date: '12.12.27',
+        },
     ]);
 
-    const siz_stock = [
-        { id: 10, name: 'Каска защитная (белая)', term: '24 мес.' },
-        { id: 11, name: 'Перчатки спилковые', term: '3 мес.' },
-        { id: 12, name: 'Костюм «Энергия»', term: '12 мес.' },
-    ];
-
-    const issue_siz = (item) => {
-        const today = new Date().toLocaleDateString('ru-RU');
-        const new_item = { id: Date.now(), name: item.name, date: today, expiry: '12 мес.' };
-        set_current_siz([new_item, ...current_siz]);
-        set_is_modal_open(false);
-    };
-
     return (
-        <div className={`${s.container} ${is_archived ? s.archived : ''}`}>
-            <button className={s.back_btn} onClick={() => navigate('/users')}>
-                <ArrowLeft size={18} /> Назад
-            </button>
-
-            <div className={s.header}>
-                <div className={s.user_main}>
-                    <h1>Иван Иванов {is_archived && <span className={s.archived_text}>(В АРХИВЕ)</span>}</h1>
-                    <span className={s.pos_tag}>Резчик холодного металла • {id}</span>
-                </div>
-                <button className={is_archived ? s.restore_btn : s.archive_btn} onClick={() => set_is_archived(!is_archived)}>
-                    <Archive size={16} /> {is_archived ? 'Восстановить' : 'В архив'}
-                </button>
+        <div className={s.wrapper}>
+            <div className={s.wrapper_back}>
+                <ArrowLeft size={20} stroke='#6488BC' />
+                <Link className={s.link}>Вернуться к сотрудникам</Link>
             </div>
 
-            {/* Блок активных СИЗ */}
-            <section className={s.section}>
-                <div className={s.section_header}>
-                    <h2>
-                        <Package size={20} /> Текущие СИЗ
-                    </h2>
-                    {!is_archived && (
-                        <button className={s.add_btn} onClick={() => set_is_modal_open(true)}>
-                            <Plus size={16} /> Выдать
-                        </button>
-                    )}
-                </div>
-                <div className={s.siz_list}>
-                    {current_siz.map((siz) => (
-                        <div key={siz.id} className={s.siz_item}>
-                            <span className={s.siz_name}>{siz.name}</span>
-                            <span className={s.siz_dates}>
-                                Выдано: {siz.date} • До: {siz.expiry}
-                            </span>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            <div className={s.title_user}>
+                <h2>Иван Иванов</h2>
+                <p>Резчик холодного металла </p>
+                <p>Личный номер 342 </p>
+            </div>
 
-            {/* Блок истории */}
-            <section className={s.section}>
-                <div className={s.section_header}>
-                    <h2>
-                        <History size={20} /> История эксплуатации
-                    </h2>
-                </div>
-                <div className={s.history_list}>
-                    {history_siz.map((h) => (
-                        <div key={h.id} className={s.history_item}>
-                            <Clock size={16} className={s.history_icon} />
-                            <div className={s.history_info}>
-                                <span className={s.h_name}>{h.name}</span>
-                                <span className={s.h_dates}>
-                                    {h.date} — {h.end_date}
-                                </span>
-                            </div>
-                            <span className={s.h_status}>{h.status}</span>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            <div className={s.wrapper_test}>
+                <div className={s.wrapper_current_siz}>
+                    <div className={s.title_current_siz}>
+                        <Package size={20} />
+                        <p>Текущие СИЗ</p>
+                    </div>
 
-            {/* Модалка */}
-            {is_modal_open && (
-                <div className={s.overlay} onClick={() => set_is_modal_open(false)}>
-                    <div className={s.modal} onClick={(e) => e.stopPropagation()}>
-                        <div className={s.modal_header}>
-                            <h3>Выбор СИЗ</h3>
-                            <button onClick={() => set_is_modal_open(false)}>
-                                <X size={20} />
-                            </button>
-                        </div>
-                        {siz_stock.map((item) => (
-                            <div key={item.id} className={s.stock_item} onClick={() => issue_siz(item)}>
-                                <span>{item.name}</span>
-                                <Plus size={16} />
+                    <button className={s.btn_add_siz}>
+                        <Plus size={20} stroke='white' />
+                        Выдать
+                    </button>
+                </div>
+                {siz_catalog.map((item, i) => {
+                    return (
+                        <div className={s.siz} key={item.id}>
+                            <img className={s.siz_img} src={item.img} />
+                            <div>
+                                <h4>{item.title} </h4>
+                                <p>{item.description}</p>
+                                {/* {item.attribute.map((atribute) => {
+                                    console.log(atribute.value);
+                                    return <p></p>;
+                                })} */}
+                                <p>Срок износа: 12мес</p>
+                                <p>Дата выдачи: 16.12.26</p>
+                                <button>Заменить</button>
                             </div>
-                        ))}
+                        </div>
+                    );
+                })}
+
+                <div className={s.siz}>
+                    <img className={s.siz_img} src={bot} alt='' />
+                    <div>
+                        <h4>Ботинки рабочие </h4>
+                        <p>Защитный подносок, антипрокольная стелька, МБС подошва.</p>
+                        <p>Размер: 45</p>
+                        <p>Рост: 175-186</p>
+                        <p>Срок износа: 12мес</p>
+                        <p>Дата выдачи: 16.12.26</p>
                     </div>
                 </div>
-            )}
+                <button>Добавить в историю</button>
+            </div>
+
+            <div className={s.wrapper_test}>
+                <div className={s.wrapper_current_siz}>
+                    <div className={s.title_current_siz}>
+                        <History size={20} />
+                        <p>История эксплуатации СИЗ</p>
+                    </div>
+                </div>
+                <div>16.04.25 - 16.04.26 4 поз. </div>
+            </div>
         </div>
     );
-};
+});
+{
+    /* <div className={s.dedline_siz}>365</div> */
+}

@@ -26,7 +26,7 @@
 
 .hint {
     font-size: 11px;
-    color: #94a3b8; /* Светло-серый цвет */
+    color: #94a3b8;
     font-weight: 400;
 }
 .label {
@@ -135,6 +135,9 @@
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
+}
+.add_btn:active {
+    transform: translateY(-2px);
 }
 .param_row {
     display: grid;

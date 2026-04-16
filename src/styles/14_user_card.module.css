@@ -1,294 +1,67 @@
-.container {
+.wrapper {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 10px;
 }
-
-.back_btn {
+.wrapper_back {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: none;
-    border: none;
-    color: #64748b;
+    gap: 5px;
+}
+.link {
+    all: unset;
+    color: #6488bc;
     cursor: pointer;
-    font-weight: 500;
-    width: fit-content;
 }
-.back_btn:hover {
-    color: #3b82f6;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-.user_main h1 {
-    font-size: 28px;
-    color: #1e293b;
-    margin-bottom: 8px;
-}
-.pos_tag {
-    background: #eff6ff;
-    color: #3b82f6;
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.archive_btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border: 1px solid #fca5a5;
-    color: #ef4444;
-    background: #fef2f2;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.info_grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    background: #f8fafc;
-    padding: 20px;
-    border-radius: 12px;
-}
-.info_item label {
-    display: block;
-    font-size: 12px;
-    color: #94a3b8;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-}
-.info_item span {
-    font-size: 16px;
-    font-weight: 600;
-    color: #334155;
-}
-
-.section {
+.wrapper_test {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+    margin-top: 15px;
 }
-.section_header {
+.wrapper_current_siz {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #e2e8f0;
+    justify-content: space-between;
     padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
 }
-.section_header h2 {
+.title_user {
+}
+.title_current_siz {
+    display: flex;
+    gap: 5px;
+}
+.btn_add_siz {
+    all: unset;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    color: #1e293b;
-}
-
-.add_btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: #3b82f6;
+    background-color: #2b7cfd;
+    border-radius: 8px;
     color: white;
-    border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
-    cursor: pointer;
+    padding: 5px;
     font-weight: 600;
+    cursor: pointer;
 }
-
-.siz_item {
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 15px;
+.btn_add_siz:active {
+    transform: translateY(-2px);
 }
-.siz_name {
-    display: block;
-    font-weight: 700;
-    color: #1e293b;
-    margin-bottom: 4px;
-}
-.siz_dates {
-    font-size: 13px;
-    color: #64748b;
-}
-
-.history_table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-}
-.history_table th {
-    text-align: left;
+.siz {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f1f5f9;
+    border-radius: 7px;
     padding: 10px;
-    color: #94a3b8;
-    font-weight: 500;
-    border-bottom: 1px solid #f1f5f9;
 }
-.history_table td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #f1f5f9;
+.siz_img {
+    width: 60px;
+    height: 60px;
+    mix-blend-mode: multiply;
 }
-.status_old {
-    color: #94a3b8;
-    font-style: italic;
-}
-/* Модальное окно */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.5);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-}
-
-.modal {
-    background: white;
-    width: 100%;
-    max-width: 500px;
-    max-height: 80vh;
-    border-radius: 16px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.modal_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.stock_list {
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.stock_item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.stock_item:hover {
-    border-color: #3b82f6;
-    background: #f0f7ff;
-}
-
-.stock_name {
-    font-weight: 600;
-    color: #1e293b;
-    font-size: 15px;
-}
-.stock_term {
-    font-size: 12px;
-    color: #64748b;
-}
-
-.add_icon {
-    color: #3b82f6;
-}
-
-.siz_item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 10px;
-}
-
-.check_icon {
-    color: #22c55e;
-}
-
-/* Состояние архива */
-.archived {
-    filter: grayscale(0.8);
-    opacity: 0.8;
-    pointer-events: none; /* Запрещаем клики */
-}
-.archived .back_btn,
-.archived .header button {
-    pointer-events: auto;
-} /* Кроме кнопок управления */
-
-.archived_text {
-    color: #ef4444;
-    font-size: 14px;
-    margin-left: 10px;
-}
-
-/* История */
-.history_list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.history_item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 12px;
-    border-bottom: 1px dashed #e2e8f0;
-}
-.history_icon {
-    color: #94a3b8;
-}
-.history_info {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-.h_name {
-    font-weight: 600;
-    color: #475569;
-    font-size: 14px;
-}
-.h_dates {
-    font-size: 12px;
-    color: #94a3b8;
-}
-.h_status {
-    font-size: 12px;
-    color: #64748b;
-    background: #f1f5f9;
-    padding: 2px 8px;
-    border-radius: 4px;
-}
-
-/* Кнопки */
-.restore_btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border: 1px solid #22c55e;
-    color: #22c55e;
-    background: #f0fdf4;
-    border-radius: 8px;
-    cursor: pointer;
+.dedline_siz {
+    background-color: rgb(40, 173, 40);
+    border-radius: 30px;
+    padding: 10px;
+    color: white;
 }
