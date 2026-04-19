@@ -1,0 +1,8 @@
+my_database.db
+node_modules/
+pre
+*.js.map
+.env
+/build
+/dist
+.cache/

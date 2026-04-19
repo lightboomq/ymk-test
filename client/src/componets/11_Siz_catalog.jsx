@@ -6,7 +6,6 @@ import perchi from '../assets/перчи.png';
 import s from '../styles/11_siz_catalog.module.css';
 
 export const Siz_catalog = observer(() => {
-    Siz_store.log();
     const arr = Siz_store.get_all_data();
 
     return (

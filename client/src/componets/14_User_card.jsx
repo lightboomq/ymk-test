@@ -33,7 +33,8 @@ export const User_card = observer(() => {
             end_date: '12.12.27',
         },
     ]);
-
+    const { id } = useParams();
+    console.log(id);
     return (
         <div className={s.wrapper}>
             <div className={s.wrapper_back}>

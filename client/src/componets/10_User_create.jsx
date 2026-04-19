@@ -4,12 +4,15 @@ import s from '../styles/10_user_create.module.css';
 
 export const User_create = () => {
     const [form_data, set_form_data] = React.useState({
+        id: Date.now(),
         personal_number: '',
         first_name: '',
         last_name: '',
         job_title: '',
         password: '',
         is_fired: false,
+        start_date: '',
+        end_date: '',
     });
 
     const [errors, set_errors] = React.useState({});
