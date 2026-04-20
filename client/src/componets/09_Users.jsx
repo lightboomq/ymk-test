@@ -25,7 +25,7 @@ export const Users = () => {
 
         // fetchUsers();
     }, []);
-
+    //test
     const [search, set_search] = React.useState('');
     const redirect = useNavigate();
     const filter = users.filter((user) => {
@@ -33,9 +33,9 @@ export const Users = () => {
         return user.first_name.toLowerCase().trim().startsWith(query) || user.last_name.toLowerCase().trim().startsWith(query) || String(user.personal_number).startsWith(query);
     });
 
-    const highlight_status = (status) =>{
-        if(status === 0) return `${s.status_siz} ${s.danger}`
-        if(status <= 10) return `${s.status_siz} ${s.warning}`
+    const highlight_status = (status) => {
+        if (status === 0) return `${s.status_siz} ${s.danger}`
+        if (status <= 10) return `${s.status_siz} ${s.warning}`
         return `${s.status_siz} ${s.succsess}`
     }
 
