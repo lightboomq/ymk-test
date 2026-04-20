@@ -22,7 +22,7 @@ export const Sidebar = observer(({ closeMenu }) => {
                 </li>
                 <li onClick={closeMenu}>
                     <NavLink to='/siz_catalog' className={getLinkClass}>
-                        Каталог СИЗ({Siz_store.get_all_data().length})
+                        Склад СИЗ({Siz_store.get_all_data().length})
                     </NavLink>
                 </li>
                 <li onClick={closeMenu}>
@@ -33,7 +33,7 @@ export const Sidebar = observer(({ closeMenu }) => {
 
                 <li onClick={closeMenu}>
                     <NavLink to='/user_archive' className={getLinkClass}>
-                        Архив сотрудников(10)
+                        Архив сотрудников
                     </NavLink>
                 </li>
                 <li onClick={closeMenu}>
