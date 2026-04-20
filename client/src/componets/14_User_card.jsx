@@ -33,13 +33,12 @@ export const User_card = observer(() => {
             end_date: '12.12.27',
         },
     ]);
-    const { id } = useParams();
-    console.log(id);
+   
     return (
         <div className={s.wrapper}>
             <div className={s.wrapper_back}>
                 <ArrowLeft size={20} stroke='#6488BC' />
-                <Link className={s.link}>Вернуться к сотрудникам</Link>
+                <Link className={s.link} to='/users'>Вернуться к сотрудникам</Link>
             </div>
 
             <div className={s.title_user}>

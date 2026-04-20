@@ -7,23 +7,23 @@ export const Users = () => {
     const [users, set_users] = React.useState([]);
 
     React.useEffect(() => {
-        // set_users(Users_store.get_all_data() || []);
-        const fetchUsers = async () => {
-            try {
-                const res = await fetch('http://localhost:5000');
+        set_users(Users_store.get_all_data() || []);
+        // const fetchUsers = async () => {
+        //     try {
+        //         const res = await fetch('http://localhost:5000');
 
-                if (!res) {
-                    throw new Error('Ошибка сети');
-                }
+        //         if (!res) {
+        //             throw new Error('Ошибка сети');
+        //         }
 
-                const data = await res.json();
-                set_users(data);
-            } catch (error) {
-                console.error('Не удалось загрузить пользователей:', error);
-            }
-        };
+        //         const data = await res.json();
+        //         set_users(data);
+        //     } catch (error) {
+        //         console.error('Не удалось загрузить пользователей:', error);
+        //     }
+        // };
 
-        fetchUsers();
+        // fetchUsers();
     }, []);
 
     const [search, set_search] = React.useState('');
@@ -32,6 +32,12 @@ export const Users = () => {
         const query = search.toLowerCase();
         return user.first_name.toLowerCase().trim().startsWith(query) || user.last_name.toLowerCase().trim().startsWith(query) || String(user.personal_number).startsWith(query);
     });
+
+    const highlight_status = (status) =>{
+        if(status === 0) return `${s.status_siz} ${s.danger}`
+        if(status <= 10) return `${s.status_siz} ${s.warning}`
+        return `${s.status_siz} ${s.succsess}`
+    }
 
     return (
         <>
@@ -51,7 +57,7 @@ export const Users = () => {
                         <div className={s.item}>{item.personal_number}</div>
                         <div className={s.item}>{item.job_title}</div>
                         <div className={s.item}>
-                            <span className={`${s.status_siz} ${s.succsess}`}>{item.days} дн.</span>
+                            <span className={highlight_status(item.status_siz)}>{item.status_siz} дн.</span>
                         </div>
                     </div>
                 ))}

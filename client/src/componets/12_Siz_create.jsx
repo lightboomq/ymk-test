@@ -14,8 +14,8 @@ export const Siz_create = observer(() => {
         const next_year = new Date();
         next_year.setFullYear(today.getFullYear() + 1);
         return {
-            start_date: get_formatted_date(today),
-            end_date: get_formatted_date(next_year),
+            usage_period: get_formatted_date(today),
+
         };
     };
 
@@ -23,11 +23,10 @@ export const Siz_create = observer(() => {
 
     const [form_data, set_form_data] = useState({
         id: Date.now(),
-        category: '',
+        type: '',
         description: '',
         img: null,
-        start_date: initial_dates.start_date,
-        end_date: initial_dates.end_date,
+        usage_period: '',
     });
 
     const [dynamic_params, set_dynamic_params] = useState([{ id: 1, label: '', value: '' }]);
@@ -37,12 +36,14 @@ export const Siz_create = observer(() => {
     const [is_dragging, set_is_dragging] = useState(false);
     const file_input_ref = useRef(null);
 
-    // Проверка дат
+
     const validate_dates = (issue, expiry) => {
-        if (new Date(issue) > new Date(expiry)) {
-            return 'Дата выдачи не может быть больше срока годности';
-        }
-        return '';
+        const validate_usage = (value) => {
+            if (!value || value <= 0) {
+                return 'Введите корректный срок износа';
+            }
+            return '';
+        };
     };
 
     const handle_change = (e) => {
@@ -80,7 +81,7 @@ export const Siz_create = observer(() => {
         // if (!form_data.img) current_errors.img = 'Загрузите фотографию';
         if (!form_data.description.trim()) current_errors.description = 'Заполните описание';
 
-        const date_err = validate_dates(form_data.start_date, form_data.end_date);
+        const date_err = validate_dates(form_data.usage_period);
         if (date_err) current_errors.dates = date_err;
 
         if (Object.keys(current_errors).length > 0) {
@@ -93,6 +94,8 @@ export const Siz_create = observer(() => {
         console.log('отправка_данных_сиз:', final_data);
     };
 
+
+
     return (
         <div className={s.container}>
             <h2 className={s.title}>Создание карточки СИЗ</h2>
@@ -100,12 +103,16 @@ export const Siz_create = observer(() => {
             <form className={s.form} onSubmit={handle_submit} autoComplete='off'>
                 <div className={s.row}>
                     <div className={s.field_group}>
-                        <label className={s.label}>Дата выдачи</label>
-                        <input type='date' name='start_date' className={s.input} value={form_data.start_date} onChange={handle_change} />
-                    </div>
-                    <div className={s.field_group}>
-                        <label className={s.label}>Срок износа</label>
-                        <input type='date' name='end_date' className={`${s.input} ${errors.dates ? s.input_error : ''}`} value={form_data.end_date} onChange={handle_change} />
+                        <label className={s.label}>Срок износа (в месяцах)</label>
+                        <input
+                            type='number'
+                            name='usage_period'
+                            className={s.input}
+                            value={form_data.usage_period}
+                            onChange={handle_change}
+                            placeholder='Например: 12'
+                            min='1'
+                        />
                     </div>
                 </div>
                 {errors.dates && <span className={s.error_text}>{errors.dates}</span>}
@@ -115,8 +122,8 @@ export const Siz_create = observer(() => {
                     <input
                         type='text'
                         className={s.input}
-                        value={form_data.category}
-                        onChange={(e) => set_form_data({ ...form_data, category: e.target.value })}
+                        value={form_data.type}
+                        onChange={(e) => set_form_data({ ...form_data, type: e.target.value })}
                         placeholder='Например: Ботинки'
                         required
                     />
