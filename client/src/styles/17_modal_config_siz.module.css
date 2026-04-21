@@ -1,4 +1,4 @@
-.modal {
+.container {
     background: #fff;
     width: 520px;
     border-radius: 24px;
@@ -6,25 +6,25 @@
     box-shadow: 0 25px 50px -12px #00000026;
     display: flex;
     flex-direction: column;
-    gap: 20px
+    gap: 20px;
 }
 
-.modal_header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.modal_title {
+.title {
     font-size: 18px;
     color: 18px;
 }
 
-.modal_close_btn {
-    cursor: pointer
+.close_btn {
+    cursor: pointer;
 }
 
-.modal_wrapper_info {
+.wrapper_info {
     display: flex;
     gap: 20px;
     padding: 16px;
@@ -33,20 +33,20 @@
     border: 1px solid #f1f5f9;
 }
 
-.modal_img {
+.img {
     width: 80px;
     height: 80px;
     object-fit: contain;
     mix-blend-mode: multiply;
 }
 
-.modal_info {
+.info {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.modal_description {
+.description {
     font-size: 13px;
     color: rgb(100, 116, 139);
 }
@@ -55,7 +55,7 @@
     background: none;
     border: none;
     padding: 0;
-    color: #2B7CFD;
+    color: #2b7cfd;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
@@ -84,7 +84,8 @@
     background: #fff;
 }
 
-.wrapper_input_date {}
+.wrapper_input_date {
+}
 
 .input_date {
     width: 100%;
