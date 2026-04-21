@@ -40,7 +40,7 @@ class Siz_store {
                 },
                 {
                     name: 'Рост',
-                    value: '158-164,170-176, 182-188',
+                    value: '158-164,170-176, 182-188,182-188 ,182-188,182-188 ,182-188',
                 },
             ],
             replacement: false,
@@ -49,20 +49,41 @@ class Siz_store {
             end_date: '12.12.27',
         },
     ];
+
+    current = null
+
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
     }
+    //Получить все сизы
     get_all_data() {
         return this.data;
     }
+    //Добавить сиз
     add(new_siz) {
         this.data.push(new_siz);
     }
+    //Выбрать сиз
+    get_pick_item(id) {
+        return this.data.find((item) => item.id === id);
+    }
+    //Добавить выбраный сиз
+    set_current(id) {
+        this.current = this.data.find(item => item.id === id) || null;
+    }
+    //Сброс
+    reset_current() {
+        this.current = null;
+    }
+    //Удалить сиз
     remove_item(id) {
         this.data = this.data.filter((item) => item.id !== id);
     }
     log() {
         console.log(toJS(this.data));
+    }
+    log_current() {
+        console.log(toJS(this.current));
     }
 }
 

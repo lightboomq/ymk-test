@@ -26,15 +26,15 @@ export const Siz_catalog = observer(() => {
 
                     <div className={s.attributes}>
                         {item.attributes.map((atr, index) => {
-                            const values = atr.value.toString().split(',');
+                            const values = atr.value.split(',').map(v => v.trim()).filter(Boolean);
 
                             return (
                                 <div className={s.attr_group} key={index}>
                                     <span className={s.label}>{atr.name}</span>
                                     <div className={s.values_list}>
-                                        {values.map((val, i) => (
+                                        {values.map((value, i) => (
                                             <span key={i} className={s.badge}>
-                                                {val.trim()}
+                                                {value.trim()}
                                             </span>
                                         ))}
                                     </div>

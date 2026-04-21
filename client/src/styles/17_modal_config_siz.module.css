@@ -1,0 +1,91 @@
+.modal {
+    background: #fff;
+    width: 520px;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 25px 50px -12px #00000026;
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.modal_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal_title {
+    font-size: 18px;
+    color: 18px;
+}
+
+.modal_close_btn {
+    cursor: pointer
+}
+
+.modal_wrapper_info {
+    display: flex;
+    gap: 20px;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 14px;
+    border: 1px solid #f1f5f9;
+}
+
+.modal_img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.modal_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.modal_description {
+    font-size: 13px;
+    color: rgb(100, 116, 139);
+}
+
+.toggle_description_btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #2B7CFD;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    width: fit-content;
+    transition: opacity 0.2s;
+}
+
+.label {
+    color: rgb(148, 163, 184);
+}
+
+.values_list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 8px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #fff;
+}
+
+.wrapper_input_date {}
+
+.input_date {
+    width: 100%;
+}
