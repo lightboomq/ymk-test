@@ -6,10 +6,9 @@ import Siz_store from '../store/02_Siz_store';
 import s from '../styles/18_user_current_siz.module.css';
 import perchi from '../assets/перчи.png';
 
-export const User_current_siz = observer(() => {
+export const User_current_siz = observer(({ set_modal_active_step }) => {
     return (
         <div className={s.container}>
-
             <div className={s.wrapper}>
                 <div className={s.wrapper_title}>
                     <Package size={20} color='#2B7CFD' />
@@ -20,11 +19,10 @@ export const User_current_siz = observer(() => {
                     <Plus size={18} />
                     <span>Выдать</span>
                 </button>
-
             </div>
 
             <div className={s.content}>
-                <img className={s.img} src={perchi} alt="siz" />
+                <img className={s.img} src={perchi} alt='siz' />
                 <div className={s.wrapper_info}>
                     <h4>Костюм каспер</h4>
                     <div className={s.wrapper_atr}>
@@ -47,9 +45,7 @@ export const User_current_siz = observer(() => {
                 <span className={s.remove_btn}>
                     <Trash2 size={18} color='#94A3B8' />
                 </span>
-
             </div>
         </div>
     );
 });
-

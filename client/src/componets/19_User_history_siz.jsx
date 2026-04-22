@@ -9,7 +9,6 @@ import perchi from '../assets/перчи.png';
 export const User_history_siz = observer(() => {
     return (
         <div className={s.container}>
-
             <div className={s.wrapper}>
                 <div className={s.wrapper_title}>
                     <History size={20} color='#64748B' />
@@ -18,7 +17,7 @@ export const User_history_siz = observer(() => {
             </div>
             <div className={s.content}>
                 <div className={s.wrapper_info}>
-                    <img className={s.img} src={perchi} alt="siz" />
+                    <img className={s.img} src={perchi} alt='siz' />
                     <div className={s.wrapper_atr}>
                         <h4>Костюм каспер</h4>
                         <div className={s.atr}>Размер: 182-201 • Рост 190 • Размах крыльев</div>
@@ -38,4 +37,3 @@ export const User_history_siz = observer(() => {
         </div>
     );
 });
-

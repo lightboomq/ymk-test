@@ -6,7 +6,7 @@ import s from '../styles/11_siz_catalog.module.css';
 
 export const Siz_catalog = observer(() => {
     const items = Siz_store.get_all_data();
-
+    Siz_store.log();
     return (
         <div className={s.container}>
             <h2 className={s.header}>Cклад СИЗ</h2>
@@ -26,14 +26,17 @@ export const Siz_catalog = observer(() => {
 
                     <div className={s.attributes}>
                         {item.attributes.map((atr, index) => {
-                            const values = atr.value.split(',').map(v => v.trim()).filter(Boolean);
+                            const values = atr.value
+                                .split(',')
+                                .map((v) => v.trim())
+                                .filter(Boolean);
 
                             return (
                                 <div className={s.attr_group} key={index}>
-                                    <span className={s.label}>{atr.name}</span>
+                                    <span className={s.label}>{atr.label}</span>
                                     <div className={s.values_list}>
                                         {values.map((value, i) => (
-                                            <span key={i} className={s.badge}>
+                                            <span key={i} className={s.value}>
                                                 {value.trim()}
                                             </span>
                                         ))}

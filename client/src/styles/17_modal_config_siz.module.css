@@ -74,7 +74,7 @@
     flex-wrap: wrap;
 }
 
-.badge {
+.value {
     padding: 8px 16px;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
@@ -82,10 +82,12 @@
     font-weight: 600;
     cursor: pointer;
     background: #fff;
+    user-select: none;
 }
-
-.wrapper_input_date {}
-
+.selected {
+    background-color: #2b7cfd;
+    color: white;
+}
 .input_date {
     width: 100%;
     box-sizing: border-box;
@@ -104,19 +106,23 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #2b7cfd;
     color: #fff;
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 15px;
     font-weight: 600;
-    cursor: pointer;
     transition: 0.2s;
     width: 100%;
+    background: #2b7cfd;
     justify-content: center;
     box-sizing: border-box;
+    opacity: 0.4;
+    cursor: default;
 }
-
+.ready {
+    cursor: pointer;
+    opacity: 1;
+}
 .change_choice_btn {
     width: 100%;
     border-width: medium;

@@ -10,15 +10,15 @@ class Siz_store {
             description: 'Защитный подносок, антипрокольная стелька, МБС подошва.',
             attributes: [
                 {
-                    name: 'Размер',
+                    label: 'Размер',
                     value: '44,47,45',
                 },
                 {
-                    name: 'Рост',
+                    label: 'Рост',
                     value: '174-189,190-210,45',
                 },
                 {
-                    name: 'Размах рук',
+                    label: 'Размах рук',
                     value: '25',
                 },
             ],
@@ -35,11 +35,11 @@ class Siz_store {
                 'Защитный комбинезон "Каспер" является надежным средством для защиты одежды от попадания грязи и производственной пыли, а также обеспечивает защиту продуктов питания и др. товаров от нежелательного контакта с открытыми участками верхней одежды сотрудников.',
             attributes: [
                 {
-                    name: 'Размер',
+                    label: 'Размер',
                     value: '88-92,96-100,104-108, 112-116,120-124',
                 },
                 {
-                    name: 'Рост',
+                    label: 'Рост',
                     value: '158-164,170-176, 182-188,182-188 ,182-188,182-188 ,182-188',
                 },
             ],
@@ -49,8 +49,6 @@ class Siz_store {
             end_date: '12.12.27',
         },
     ];
-
-    current = null
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
@@ -68,12 +66,8 @@ class Siz_store {
         return this.data.find((item) => item.id === id);
     }
     //Добавить выбраный сиз
-    set_current(id) {
-        this.current = this.data.find(item => item.id === id) || null;
-    }
-    //Сброс
-    reset_current() {
-        this.current = null;
+    get_current(id) {
+        return this.data.find((item) => item.id === id) || null;
     }
     //Удалить сиз
     remove_item(id) {
@@ -81,9 +75,6 @@ class Siz_store {
     }
     log() {
         console.log(toJS(this.data));
-    }
-    log_current() {
-        console.log(toJS(this.current));
     }
 }
 
