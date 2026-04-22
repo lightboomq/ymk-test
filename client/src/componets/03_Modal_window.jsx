@@ -1,28 +1,31 @@
-import s from '../styles/03_modal_window.module.css';
+import React from 'react';
+import s from '../03_modal_window.module.css';
 
-export function Modal_window({ set_is_open_modal, text, action }) {
+const DeleteModal = ({ isOpen, onClose, onDelete }) => {
+    if (!isOpen) return null;
+
     return (
-        <div className={s.wrapperModalWindow}>
-            <div className={s.modalWindow}>
-                <p className={s.text}>{text}</p>
+        <div className={s.overlay}>
+            <div className={s.container}>
+                <div className={s.icon}>!</div>
 
-                <div className={s.wrapperBtns}>
-                    <button
-                        onClick={() => {
-                            action();
-                            set_is_open_modal(false);
-                        }}
-                        className={`${s.btn} ${s.btnYes}`}
-                        type='button'
-                    >
-                        Подтверждаю
-                    </button>
+                <h2 className={s.title}>Удалить запись?</h2>
 
-                    <button onClick={() => set_is_open_modal(false)} className={`${s.btn} ${s.btnNo}`} type='button'>
+                <p className={s.text}>
+                    Это действие нельзя будет отменить. Данные будут безвозвратно удалены из системы.
+                </p>
+
+                <div className={s.actions}>
+                    <button className={s.btnSecondary} onClick={onClose}>
                         Отмена
+                    </button>
+                    <button className={s.btnDanger} onClick={onDelete}>
+                        Удалить
                     </button>
                 </div>
             </div>
         </div>
     );
-}
+};
+
+export default DeleteModal;

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { ArrowLeft, Package, Plus, History, X, RefreshCw, Trash2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { User_current_siz } from './18_User_current_siz';
+import { User_history_siz } from './19_User_history_siz';
 import { Modal_selection_siz } from './16_Modal_selection_siz';
 import { Modal_config_siz } from './17_Modal_config_siz';
 import Siz_store from '../store/02_Siz_store';
@@ -37,23 +39,9 @@ export const User_card = observer(() => {
                 <p className={s.user_job_title}>Резчик холодного металла • Личный номер 321</p>
             </div>
 
-            <div className={s.wrapper_inventory}>
-                <div className={s.wrapper_inventory_title}>
-                    <Package size={20} color='#2B7CFD' />
-                    <h3 className={s.inventory_title}>Текущие СИЗ</h3>
-                </div>
-                <button className={s.give_siz_btn} onClick={() => set_modal_active_step('Склад СИЗ')} type='button'>
-                    <Plus size={18} />
-                    <span>Выдать</span>
-                </button>
-            </div>
+            <User_current_siz />
+            <User_history_siz />
 
-            <div className={s.wrapper_inventory}>
-                <div className={s.wrapper_inventory_title}>
-                    <History size={20} color='#64748B' />
-                    <h3 className={s.inventory_title}>История эксплуатации СИЗ</h3>
-                </div>
-            </div>
 
             {modal_active_step === 'Склад СИЗ' && (
                 <div className={s.modal_overlay}>

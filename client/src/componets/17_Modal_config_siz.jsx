@@ -1,5 +1,5 @@
 import React from 'react';
-import { X } from 'lucide-react';
+import { X, CheckCircle2, ArrowLeft } from 'lucide-react';
 import Siz_store from '../store/02_Siz_store.js';
 import s from '../styles/17_modal_config_siz.module.css';
 
@@ -44,11 +44,16 @@ export const Modal_config_siz = ({ set_modal_active_step }) => {
                     </div>
                 );
             })}
-            <div className={s.wrapper_input_date}>
+            <div>
                 <span className={s.label}>Дата выдачи</span>
                 <input className={s.input_date} type='date' value={date} onChange={(e) => set_date(e.target.value)} />
             </div>
+
+            <div>
+                <button className={s.submit_btn} type='button'><CheckCircle2 size={18} color='white' />  Подтвердить</button>
+                <button className={s.change_choice_btn} type='button'>← Изменить выбор</button>
+            </div>
+
         </div>
     );
-    //test
 };

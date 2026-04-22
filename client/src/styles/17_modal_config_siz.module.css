@@ -84,9 +84,48 @@
     background: #fff;
 }
 
-.wrapper_input_date {
-}
+.wrapper_input_date {}
 
 .input_date {
     width: 100%;
+    box-sizing: border-box;
+    border: 1.5px solid #e2e8f0;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 8px;
+    background: #f8fafc;
+    cursor: pointer;
+}
+
+.submit_btn {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #2b7cfd;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.change_choice_btn {
+    width: 100%;
+    border-width: medium;
+    border-style: none;
+    border-color: currentcolor;
+    border-image: initial;
+    background: none;
+    color: rgb(148, 163, 184);
+    font-size: 12px;
+    margin-top: 12px;
+    cursor: pointer;
 }
