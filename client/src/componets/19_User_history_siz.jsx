@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { ArrowLeft, Package, Plus, History, X, RefreshCw, Trash2, CheckCircle2, AlertCircle } from 'lucide-react';
-import Siz_store from '../store/02_Siz_store';
+import Siz from '../store/02_Siz';
 import s from '../styles/19_user_history_siz.module.css';
 import perchi from '../assets/перчи.png';
 
 export const User_history_siz = observer(() => {
+
     return (
         <div className={s.container}>
             <div className={s.wrapper}>

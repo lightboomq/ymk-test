@@ -1,7 +1,7 @@
 import { makeAutoObservable, toJS } from 'mobx';
 
-class Users_store {
-    data = [
+class Users {
+    users = [
         {
             id: 1,
             first_name: 'Иван',
@@ -27,23 +27,20 @@ class Users_store {
             status_siz: 140,
         },
     ];
-    current = null;
+
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
     }
-    get_all_data() {
-        return this.data;
-    }
-    get_user(id) {
-        return this.data.find((user) => user.id === id);
+    all() {
+        return this.users;
     }
     add(new_user) {
-        this.data.push(new_user);
+        this.users.push(new_user);
     }
-    log() {
-        console.log(toJS(this.data));
+    print_debug() {
+        console.log(toJS(this.users));
     }
 }
 
-export default new Users_store();
+export default new Users();

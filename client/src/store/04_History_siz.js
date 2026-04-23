@@ -1,21 +1,20 @@
 import { makeAutoObservable, toJS } from 'mobx';
 
-class Current_siz_store {
-    data = null;
+class History_siz {
+    data = [];
+
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
     }
-    //Получить все сизы
-    get_data() {
+    get_all_data() {
         return this.data;
     }
-    //Добавить выбраный сиз
-    add(item) {
-        this.data = item;
+    add(new_item) {
+        this.data.push(new_item);
     }
     log() {
         console.log(toJS(this.data));
     }
 }
 
-export default new Current_siz_store();
+export default new History_siz();

@@ -1,4 +1,5 @@
 import s from '../styles/04_words.module.css';
+
 import s1 from '../styles/12_add_word_form.module.css';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';

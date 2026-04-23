@@ -6,8 +6,8 @@ import { User_current_siz } from './18_User_current_siz';
 import { User_history_siz } from './19_User_history_siz';
 import { Modal_selection_siz } from './16_Modal_selection_siz';
 import { Modal_config_siz } from './17_Modal_config_siz';
-import Users_store from '../store/01_Users_store';
-import Siz_store from '../store/02_Siz_store';
+import Users from '../store/01_Users';
+import Siz from '../store/02_Siz';
 
 import s from '../styles/14_user_card.module.css';
 
@@ -17,8 +17,8 @@ export const User_card = observer(() => {
     const [modal_active_step, set_modal_active_step] = React.useState(null);
 
     const { id } = useParams();
-    const user = Users_store.get_user(Number(id));
-    const items = Siz_store.get_all_data();
+    const user = Users.get_user(Number(id));
+    const items = Siz.get_all_data();
 
     const [is_show_full_description, set_is_full_description] = React.useState(false);
 

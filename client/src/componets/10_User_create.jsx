@@ -1,5 +1,5 @@
 import React from 'react';
-import Users_store from '../store/01_Users_store';
+import Users from '../store/01_Users';
 import s from '../styles/10_user_create.module.css';
 
 export const User_create = () => {
@@ -45,7 +45,7 @@ export const User_create = () => {
 
     const handle_submit = (e) => {
         e.preventDefault();
-        Users_store.add(form_data);
+        Users.add(form_data);
         console.log('данные_для_отправки:', form_data);
     };
 

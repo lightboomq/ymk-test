@@ -12,7 +12,8 @@
     color: #334155;
     outline: none;
     transition: all 0.2s ease;
-    width: 250px; /* или любой нужный размер */
+    width: 250px;
+    /* или любой нужный размер */
     background-color: #ffffff;
 }
 
@@ -29,6 +30,7 @@
     color: #94a3b8;
     font-size: 13px;
 }
+
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -38,9 +40,11 @@
     margin-top: 10px;
     overflow: hidden;
 }
+
 .row {
     display: contents;
 }
+
 .grid_header {
     background-color: #f8fafc;
     font-size: 13px;
@@ -48,6 +52,7 @@
     color: #64748b;
     padding: 15px;
 }
+
 .item {
     display: flex;
     align-items: center;
@@ -59,16 +64,18 @@
     transition: background-color 0.2s ease;
     background-color: white;
 }
+
 .row:hover .item {
     background-color: #f1f5f9;
 }
+
 .name {
     font-size: 14px;
     color: #334155;
     font-weight: 600;
 }
 
-.status_siz {
+.status {
     padding: 2px 12px;
     border-radius: 5px;
     font-size: 12px;
@@ -80,10 +87,12 @@
     color: #22c55e;
     background-color: #dcfce7;
 }
+
 .warning {
     color: #f59e0b;
     background-color: #fffbeb;
 }
+
 .danger {
     color: #ef4444;
     background-color: #fee2e2;

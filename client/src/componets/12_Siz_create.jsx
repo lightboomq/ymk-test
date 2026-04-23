@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import Siz_store from '../store/02_Siz_store';
+import Siz from '../store/02_Siz';
 import { Upload, Plus, Trash2, X } from 'lucide-react';
 import s from '../styles/12_siz_create.module.css';
 
@@ -90,7 +90,7 @@ export const Siz_create = observer(() => {
         }
 
         const final_data = { ...form_data, attributes: dynamic_params };
-        Siz_store.add(final_data);
+        Siz.add(final_data);
         console.log('отправка_данных_сиз:', final_data);
     };
 

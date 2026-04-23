@@ -1,20 +1,20 @@
 import React from 'react';
 import { Trash2 } from 'lucide-react';
 import { observer } from 'mobx-react-lite';
-import Siz_store from '../store/02_Siz_store';
-import s from '../styles/11_siz_catalog.module.css';
+import Stock from '../store/02_Stock';
+import s from '../styles/11_Stock_catalog.module.css';
 
-export const Siz_catalog = observer(() => {
-    const items = Siz_store.get_all_data();
-    Siz_store.log();
+export const Stock_catalog = observer(() => {
+    const items = Stock.get_all_data();
+
     return (
         <div className={s.container}>
             <h2 className={s.header}>Cклад СИЗ</h2>
 
             {items.map((item) => (
                 <div className={s.card} key={item.id}>
-                    <span className={s.remove_card} onClick={() => Siz_store.remove_item(item.id)}>
-                        <Trash2 size={18} />
+                    <span className={s.remove_card} onClick={() => Stock.remove_item(item.id)}>
+                        <Trash2 Stocke={18} />
                     </span>
 
                     <img className={s.img} src={item.img} alt={item.title} />

@@ -1,14 +1,17 @@
 import { X } from 'lucide-react';
-import Siz_store from '../store/02_Siz_store.js';
-import Current_siz_store from '../store/03_Current_siz_store.js';
+import Siz from '../store/02_Siz.js';
+import Current_siz from '../store/03_Current_siz.js';
 import { observer } from 'mobx-react-lite';
 import s from '../styles/16_modal_selection_siz.module.css';
+import { toJS } from 'mobx'
 
-export const Modal_selection_siz = oberver(({ set_modal_active_step }) => {
-    const test = (id) => {
+export const Modal_selection_siz = observer(({ set_modal_active_step }) => {
+    const items = Siz.get_all_data();
+
+    const select_siz = (id) => {
         set_modal_active_step('Выбор параметров');
-        const item = Siz_store.get_current(id);
-        Current_siz_store.add(item);
+        const item = items.find(item => item.id === id);
+        Current_siz.set_selected_siz(item)
     };
     return (
         <div className={s.container}>
@@ -17,9 +20,9 @@ export const Modal_selection_siz = oberver(({ set_modal_active_step }) => {
                 <X className={s.close_btn} size={20} onClick={() => set_modal_active_step(null)} />
             </div>
             <div className={s.content}>
-                {Siz_store.get_all_data().map((item) => {
+                {Siz.get_all_data().map((item) => {
                     return (
-                        <div key={item.id} className={s.wrapper_item} onClick={() => test(item.id)}>
+                        <div key={item.id} className={s.wrapper_item} onClick={() => select_siz(item.id)}>
                             <img className={s.img} src={item.img} />
                             <h4 className={s.titlke}>{item.title}</h4>
                         </div>

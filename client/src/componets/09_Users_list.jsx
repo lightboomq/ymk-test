@@ -1,13 +1,14 @@
 import React from 'react';
-import Users_store from '../store/01_Users_store.js';
+import Users from '../store/01_Users.js';
 import { useNavigate } from 'react-router-dom';
-import s from '../styles/09_users.module.css';
+import { observer } from 'mobx-react-lite'
+import s from '../styles/09_users_list.module.css';
 
-export const Users = () => {
-    const [users, set_users] = React.useState([]);
+export const Users_list = observer(() => {
+
+    const users = Users.all();
 
     React.useEffect(() => {
-        set_users(Users_store.get_all_data() || []);
         // const fetchUsers = async () => {
         //     try {
         //         const res = await fetch('http://localhost:5000');
@@ -28,15 +29,18 @@ export const Users = () => {
 
     const [search, set_search] = React.useState('');
     const redirect = useNavigate();
-    const filter = users.filter((user) => {
-        const query = search.toLowerCase();
-        return user.first_name.toLowerCase().trim().startsWith(query) || user.last_name.toLowerCase().trim().startsWith(query) || String(user.personal_number).startsWith(query);
-    });
+
+
+    const filter = users
+        .filter((user) => {
+            const query = search.toLowerCase();
+            return user.first_name.toLowerCase().trim().startsWith(query) || user.last_name.toLowerCase().trim().startsWith(query) || String(user.personal_number).startsWith(query);
+        });
 
     const highlight_status = (status) => {
-        if (status === 0) return `${s.status_siz} ${s.danger}`;
-        if (status <= 10) return `${s.status_siz} ${s.warning}`;
-        return `${s.status_siz} ${s.succsess}`;
+        if (status === 0) return `${s.status} ${s.danger}`;
+        if (status <= 10) return `${s.status} ${s.warning}`;
+        return `${s.status} ${s.succsess}`;
     };
 
     return (
@@ -64,4 +68,4 @@ export const Users = () => {
             </div>
         </>
     );
-};
+});

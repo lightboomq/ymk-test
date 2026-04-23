@@ -1,5 +1,5 @@
-import Users_store from '../store/01_Users_store';
-import Siz_store from '../store/02_Siz_store';
+import Users from '../store/01_Users';
+import Siz from '../store/02_Siz';
 import { observer } from 'mobx-react-lite';
 import { NavLink } from 'react-router-dom';
 import s from '../styles/08_sidebar.module.css';
@@ -12,7 +12,7 @@ export const Sidebar = observer(({ closeMenu }) => {
             <ul className={s.menu}>
                 <li onClick={closeMenu}>
                     <NavLink to='/' end className={getLinkClass}>
-                        Сотрудники({Users_store.get_all_data().length})
+                        Сотрудники({Users.all().length})
                     </NavLink>
                 </li>
                 <li onClick={closeMenu}>
@@ -22,7 +22,7 @@ export const Sidebar = observer(({ closeMenu }) => {
                 </li>
                 <li onClick={closeMenu}>
                     <NavLink to='/siz_catalog' className={getLinkClass}>
-                        Склад СИЗ({Siz_store.get_all_data().length})
+                        Склад СИЗ({Siz.get_all_data().length})
                     </NavLink>
                 </li>
                 <li onClick={closeMenu}>

@@ -1,7 +1,7 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { Layout } from './componets/00_Layout';
 import { Auth } from './componets/05_Auth';
-import { Users } from './componets/09_Users';
+import { Users_list } from './componets/09_Users_list';
 import { User_create } from './componets/10_User_create';
 import { Siz_catalog } from './componets/11_Siz_catalog';
 import { Siz_create } from './componets/12_Siz_create';
@@ -15,8 +15,8 @@ export const App = () => {
             <Routes>
                 <Route path='auth' element={<Auth />} />
                 <Route element={<Layout />}>
-                    <Route index element={<Users />} />
-                    <Route path='users' element={<Users />} />
+                    <Route index element={<Users_list />} />
+                    <Route path='users' element={<Users_list />} />
                     <Route path='users/:id' element={<User_card />} />
                     <Route path='user_create' element={<User_create />} />
                     <Route path='siz_catalog' element={<Siz_catalog />} />
